@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <title>Kelly's Boba Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <img class="logo" src="img/boba.png" alt="">
+        <h1>Kelly's Boba Shop</h1>
+    </div>
+
+    <div class="row mt-3">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-md-4 ">
+          <% if (user.local.email) { %>
+            <form class="form-group card bg-warning p-3 mt-3" action="/orders" method="POST">
+              <h2 class="text-center">Add an order</h2>
+              <input class="mt-2" type="text" placeholder="name" name="name">
+              <input class="mt-2" type="text" placeholder="drink" name="drink">
+        
+              <div class="mt-2 px-2">
+                <div>
+                    <input type="checkbox" value="Boba" name="toppings" id="boba">
+                    <label for="boba">Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Mini Boba" name="toppings" id="miniBoba">
+                    <label for="miniBoba">Mini Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="White Pearl" name="toppings" id="whitePearl">
+                    <label for="whitePearl">White Pearl</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Pudding" name="toppings" id="pudding">
+                    <label for="pudding">Pudding</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Coconut Jelly" name="toppings" id="coconutJelly">
+                    <label for="coconutJelly">Coconut Jelly</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Red Bean" name="toppings" id="redBean">
+                    <label for="redBean">Red Bean</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Grass Jelly" name="toppings" id="grassJelly">
+                    <label for="grassJelly">Grass Jelly</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Mango Popping Boba" name="toppings" id="mangoPoppingBoba">
+                    <label for="mangoPoppingBoba">Mango Popping Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Lychee Popping Boba" name="toppings" id="lycheePoppingBoba">
+                    <label for="lycheePoppingBoba">Lychee Popping Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Passionfruit Popping Boba" name="toppings" id="passionfruitPoppingBoba">
+                    <label for="passionfruitPoppingBoba">Passionfruit Popping Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Strawberry Popping Boba" name="toppings" id="strawberryPoppingBoba">
+                    <label for="strawberryPoppingBoba">Strawberry Popping Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Grape Popping Boba" name="toppings" id="grapePoppingBoba">
+                    <label for="grapePoppingBoba">Grape Popping Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Green Apple Popping Boba" name="toppings" id="greenApplePoppingBoba">
+                    <label for="greenApplePoppingBoba">Green Apple Popping Boba</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Coffee Jelly" name="toppings" id="coffeeJelly">
+                    <label for="coffeeJelly">Coffee Jelly</label>
+                </div>
+                <div>
+                    <input type="checkbox" value="Oreo" name="toppings" id="oreo">
+                    <label for="oreo">Oreo</label>
+                </div>
+              </div>
+            <div class="mt-2 text-center">
+              <select name="size" id="">
+                <option value="">--size--</option>
+                <option value="SMALL">Small</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="LARGE">Large</option>
+              </select>
+
+              <select name="sugar" id="">
+                <option value="n/a">--Sugar--</option>
+                <option value="100%">Regular</option>
+                <option value="75%">Less</option>
+                <option value="50%">Half</option>
+                <option value="25%">Light</option>
+                <option value="none">None</option>
+              </select>
+
+              <select name="ice" id="">
+                <option value="n/a">--Ice--</option>
+                <option value="100%">Regular</option>
+                <option value="50%">Less</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+  
+              <button class="btn mt-3" type="submit">Submit</button>
+            </form>
+  
+            <% } %>
+            <div class="card bg-light p-3 mt-3">
+                <h3><span class="fa fa-user"></span> Employee</h3>
+
+                <% if (user.local.email) { %>
+                    <p>
+                        <strong>employee-id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+                    <div>
+                    <a href="/unlink/local" class="btn btn-default mb-1">Unlink</a>
+                    <a href="/logout" class="btn btn-default btn-sm mb-1">Logout</a>
+                    </div>
+                    <% } else { %>
+                      <div>
+                      <a href="/connect/local" class="btn btn-default mb-1">Connect Local</a>
+                      <a href="/logout" class="btn btn-default btn-sm mb-1">Logout</a>
+                      </div>
+                <% } %>
+
+            </div>
+            
+        </div>
+        <div class="col-md-8 text-center">
+        <h3>Orders</h3>
+        <!-- <div class="container p-0"> -->
+        <!-- <div class="row"> -->
+          <div class="d-flex flex-wrap">
+          <% for(let i = 0; i < orders.length; i++) {%>
+            <div class="col-6 my-2">
+            <section id="<%=orders[i]._id%>" class="<%= orders[i].complete ? 'done' : '' %>">
+              <div>
+                <span>#<%=i + 1%></span>
+                <h4><%=orders[i].name%></h4>
+                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                <span><i class="fa fa-ban" aria-hidden="true"></i></span>
+              </div>
+              <h5><%=orders[i].drink%></h5>
+              <ul class="text-start ">
+                <li><%=orders[i].size%></li>
+                <li><%=orders[i].toppings%></li>
+                <li><%=orders[i].sugar%> sugar</li>
+                <li><%=orders[i].ice%> ice</li>
+              </ul>
+            </section>
+            </div>
+          <% } %>
+        </div>
+        </div>
+        </div>
+        <!-- </div> -->
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
