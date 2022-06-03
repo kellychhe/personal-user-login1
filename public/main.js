@@ -27,7 +27,7 @@ Array.from(thumbUp).forEach(function(element) {
 
 Array.from(trash).forEach(function(element) {
       element.addEventListener('click', function(){
-        const _id = this.parentNode.parentNode.id
+        const _id = this.parentNode.parentNode.parentNode.id
         console.log(_id)
         fetch('orders', {
           method: 'delete',
